@@ -9,10 +9,6 @@
 #define V_MODEL "models/custom_shop/v_golden_awp.mdl"
 #define P_MODEL "models/custom_shop/p_golden_awp.mdl"
 
-#if !defined m_pPlayer
-	#define m_pPlayer 41
-#endif
-
 additem ITEM_GOLDEN_AWP
 new g_bHasItem[33], g_szDamage[16], g_iBPAmmo
 
