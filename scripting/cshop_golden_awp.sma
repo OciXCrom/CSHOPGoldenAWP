@@ -5,7 +5,7 @@
 #include <fun>
 #include <hamsandwich>
 
-#define PLUGIN_VERSION "1.0"
+#define PLUGIN_VERSION "1.0.1"
 #define V_MODEL "models/custom_shop/v_golden_awp.mdl"
 #define P_MODEL "models/custom_shop/p_golden_awp.mdl"
 
@@ -20,7 +20,7 @@ public plugin_init()
 {
 	register_plugin("CSHOP: Golden AWP", PLUGIN_VERSION, "OciXCrom")
 	register_cvar("CRXSHOPGoldenAWP", PLUGIN_VERSION, FCVAR_SERVER|FCVAR_SPONLY|FCVAR_UNLOGGED)
-	RegisterHam(Ham_Item_Deploy, "weapon_awp", "OnSelectAWP", 1)
+	register_event("CurWeapon", "OnSelectAWP", "be", "1=1", "2=18")
 	RegisterHam(Ham_TakeDamage, "player", "PreTakeDamage", 0)
 	cshop_get_string(ITEM_GOLDEN_AWP, "Damage", g_szDamage, charsmax(g_szDamage))
 	g_iBPAmmo = cshop_get_int(ITEM_GOLDEN_AWP, "Backpack Ammo")
@@ -65,11 +65,9 @@ public cshop_item_removed(id, iItem)
 public client_putinserver(id)
 	g_bHasItem[id] = false
 
-public OnSelectAWP(iEnt)
-{
-	new id = get_pdata_cbase(iEnt, m_pPlayer)
-	
-	if(is_user_connected(id) && g_bHasItem[id])
+public OnSelectAWP(id)
+{	
+	if(g_bHasItem[id])
 		RefreshAWPModel(id)
 }
 
