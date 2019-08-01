@@ -9,7 +9,7 @@
 	#define m_pPlayer 41
 #endif
 
-#define PLUGIN_VERSION "1.0.2"
+#define PLUGIN_VERSION "1.0.3"
 #define V_MODEL "models/custom_shop/v_golden_awp.mdl"
 #define P_MODEL "models/custom_shop/p_golden_awp.mdl"
 
@@ -20,7 +20,7 @@ public plugin_init()
 {
 	register_plugin("CSHOP: Golden AWP", PLUGIN_VERSION, "OciXCrom")
 	register_cvar("CRXSHOPGoldenAWP", PLUGIN_VERSION, FCVAR_SERVER|FCVAR_SPONLY|FCVAR_UNLOGGED)
-	RegisterHam(Ham_Item_Deploy, "weapon_knife", "OnSelectAWP", 1)
+	RegisterHam(Ham_Item_Deploy, "weapon_awp", "OnSelectAWP", 1)
 	RegisterHam(Ham_TakeDamage, "player", "PreTakeDamage", 0)
 	cshop_get_string(ITEM_GOLDEN_AWP, "Damage", g_szDamage, charsmax(g_szDamage))
 	g_iBPAmmo = cshop_get_int(ITEM_GOLDEN_AWP, "Backpack Ammo")
